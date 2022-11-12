@@ -1,1 +1,1 @@
-# battleship
+This project is being completed as part of the Odin Project JavaScript course. The goal of the project is to practice (TDD) test driven development using jest. As part of this, I have attempted to isolate every bit of application functionality from actual DOM manipulation when possible.
