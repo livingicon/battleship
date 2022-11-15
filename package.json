@@ -4,8 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "jest",
-    "watch": "jest --watch" 
+    "test": "jest"
   },
   "repository": {
     "type": "git",
