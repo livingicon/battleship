@@ -1,7 +1,7 @@
 import Ship from '../ship.js'
 
 describe('Ship', () => {
-  // let ship: Ship
+  let ship: Ship
 
   beforeEach(() => {
     ship = new Ship(3)
