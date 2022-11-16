@@ -1,13 +1,13 @@
 // SHIP FACTORY
 class Ship {
   
-  constructor(length, hits) {
+  constructor(length, hits = 0) {
     this.length = length;
     this.hits = hits; // []; // current hit total
   };
 
   hit() {
-    this.hits.push(1);
+    this.hits++;
   };
 
   isSunk() {

@@ -1,1 +1,1 @@
-(()=>{"use strict";const s=class{constructor(s,t){this.length=s,this.hits=t}hit(){this.hits.push(1)}isSunk(){return this.hits===this.length}},t=new s(4,2),i=new s(3,3);console.log(t.isSunk()),console.log(i.isSunk())})();
+(()=>{"use strict";const t=new class{constructor(t,s=0){this.length=t,this.hits=s}hit(){this.hits++}isSunk(){return this.hits===this.length}}(4,2);t.hit(),console.log(t)})();

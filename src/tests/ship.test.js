@@ -7,11 +7,13 @@ test('ship created', () => {
   expect(newShip).toEqual({ length: 3, hits: 2 });
 });
 
-// test('each hit adds to hits total', () => {
-//   expect(gunboat.isSunk()).toBe(false);
-// });
+test('ship hits increased', () => {
+  const newShip = new Ship(3, 1);
+  newShip.hit();
+  expect(newShip).toEqual({ length: 3, hits: 2 });
+});
 
-test('ship is sunk', () => {
+test('ship sunk', () => {
   const newShip = new Ship(3, 3)
   expect(newShip.isSunk()).toBe(true);
 });
