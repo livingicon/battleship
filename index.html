@@ -5,9 +5,96 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Battleship</title>
+  <link rel="stylesheet" href="style.css">
   <script src="main.js"></script>
+  sty
 </head>
 <body>
+
+  <header class="header">
+    <h1 class="header">Battleship</h1>
+  </header>
+
+  <main class="main">
+    <div id="info">
+      <p id="instructions">Launch ships from your harbor by dragging and dropping them 
+        into friendly waters. To switch launch direction from horizontal to vertical
+        click the "change ship direction" button before clicking on the ship.</p>
+    </div>
+
+    <div id="gameBoards">
+      <div id="harbor">
+        <h2>Harbor</h2>
+        <div id="fleet">
+          <div class="dragShip" draggable="true" id="Carrier">
+            <div class="dragCell" data-cell="1"></div>
+            <div class="dragCell" data-cell="2"></div>
+            <div class="dragCell" data-cell="3"></div>
+            <div class="dragCell" data-cell="4"></div>
+            <div class="dragCell" data-cell="5"></div>
+          </div>
+          <div class="dragShip" draggable="true" id="Battleship">
+            <div class="dragCell" data-cell="1"></div>
+            <div class="dragCell" data-cell="2"></div>
+            <div class="dragCell" data-cell="3"></div>
+            <div class="dragCell" data-cell="4"></div>
+          </div>
+          <div class="dragShip" draggable="true" id="Cruiser">
+            <div class="dragCell" data-cell="1"></div>
+            <div class="dragCell" data-cell="2"></div>
+            <div class="dragCell" data-cell="3"></div>
+          </div>
+          <div class="dragShip" draggable="true" id="Submarine">
+            <div class="dragCell" data-cell="1"></div>
+            <div class="dragCell" data-cell="2"></div>
+            <div class="dragCell" data-cell="3"></div>
+          </div>
+          <div class="dragShip" draggable="true" id="Destroyer">
+            <div class="dragCell" data-cell="1"></div>
+            <div class="dragCell" data-cell="2"></div>
+          </div>
+        </div>
+        <button id="directionBtn">Change Ship Direction</button>
+      </div>
+
+      <div id="playerArea">
+        <h2>Friendly Waters</h2>
+        <div class='grid' id="player" ondragover="onDragOver(event);" ondragenter="onDragEnter(event);" ondrop="onDrop(event);"></div>
+        <div class="battle" id="playerBattle">
+          <h2 class="status" id="playerStatus">PLAYER STATUS:</h2>
+          <p id="playCarrier">Carrier</p>
+          <p id="playBattleship">Battleship</p>
+          <p id="playCruiser">Cruiser</p>
+          <p id="playSubmarine">Submarine</p>
+          <p id="playDestroyer">Destroyer</p>
+        </div>
+      </div>
+      <div id="key">
+        <div class="colorKey" id="missKey">
+          <div id='missColor'></div>
+          <p>MISS</p>
+        </div>
+        <div class="colorKey" id="hitKey">
+          <div id='hitColor'></div>
+          <p>HIT</p>
+        </div>
+      </div>
+      <div id="computerArea">
+        <h2>Enemy Waters</h2>
+        <div class='grid' id="computer"></div>
+        <div class="battle" id="computerBattle">
+          <h2 class="status" id="enemyStatus">ENEMY STATUS:</h2>
+          <p id="compCarrier">Carrier</p>
+          <p id="compBattleship">Battleship</p>
+          <p id="compCruiser">Cruiser</p>
+          <p id="compSubmarine">Submarine</p>
+          <p id="compDestroyer">Destroyer</p>
+        </div>
+      </div>
+    </div>
+    <p id="photoCredit">Photo by <a href="https://unsplash.com/@mck?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marco Krenn</a> 
+      on <a href="https://unsplash.com/s/photos/battleship?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+  </main>
   
 </body>
 </html>
