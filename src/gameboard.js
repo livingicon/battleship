@@ -1,5 +1,7 @@
 import Ship from "./ship.js";
 import Player from "./player.js";
+import dragModule from "./dragUI.js";
+import gameModule from "./gameUI.js";
 
 // GAMEBOARD FACTORY.js
 class Gameboard {
