@@ -456,8 +456,6 @@ const checkOffBoard = (location, grid) => {
 function changeDirection() { // change to const later? In module?
   const dragShip = document.querySelectorAll('.dragShip');
   const carrier = document.getElementById('Carrier');
-  const style = getComputedStyle(carrier);
-  const width = style.width;
   const battleship = document.getElementById('Battleship');
   const cruiser = document.getElementById('Cruiser');
   const submarine = document.getElementById('Submarine');
@@ -469,24 +467,34 @@ function changeDirection() { // change to const later? In module?
       ship.style.display = 'block';
     })
     if(carrier) {
-      carrier.style.width = `${width}`;
-      carrier.style.height = `${parseInt(width)*5}px`;
+      const carStyle = getComputedStyle(carrier);
+      const carWidth = carStyle.carWidth;
+      carrier.style.width = `${carWidth}`;
+      carrier.style.height = `${parseInt(carWidth)*5}px`;
     }
     if(battleship) {
-      battleship.style.width = `${width}`;
-      battleship.style.height = `${parseInt(width)*4}px`;
+      const batStyle = getComputedStyle(battleship);
+      const batWidth = batStyle.batWidth;
+      battleship.style.width = `${batWidth}`;
+      battleship.style.height = `${parseInt(batWidth)*4}px`;
     }
     if(cruiser) {
-      cruiser.style.width = `${width}`;
-      cruiser.style.height = `${parseInt(width)*3}px`;
+      const cruisStyle = getComputedStyle(cruiser);
+      const cruisWidth = cruisStyle.cruisWidth;
+      cruiser.style.width = `${cruisWidth}`;
+      cruiser.style.height = `${parseInt(cruisWidth)*3}px`;
     }
     if(submarine) {
-      submarine.style.width = `${width}`;
-      submarine.style.height = `${parseInt(width)*3}px`;
+      const subStyle = getComputedStyle(submarine);
+      const subWidth = subStyle.subWidth;
+      submarine.style.width = `${subWidth}`;
+      submarine.style.height = `${parseInt(subWidth)*3}px`;
     }
     if(destroyer) {
-      destroyer.style.width = `${width}`;
-      destroyer.style.height = `${parseInt(width)*2}px`;
+      const destStyle = getComputedStyle(destroyer);
+      const destWidth = destStyle.destWidth;
+      destroyer.style.width = `${destWidth}`;
+      destroyer.style.height = `${parseInt(destWidth)*2}px`;
     }
   } else if (fleet.style.display = 'block') {
     const fleet = document.getElementById('fleet');
@@ -495,24 +503,34 @@ function changeDirection() { // change to const later? In module?
       ship.style.display = 'flex';
     })
     if(carrier) {
-      carrier.style.width = `${parseInt(width)*5}px`;
-      carrier.style.height = `${width}`;
+      const carStyle = getComputedStyle(carrier);
+      const carWidth = carStyle.carWidth;
+      carrier.style.width = `${parseInt(carWidth)*5}px`;
+      carrier.style.height = `${carWidth}`;
     }
     if(battleship) {
-      battleship.style.width = `${parseInt(width)*4}px`;
-      battleship.style.height = `${width}`;
+      const batStyle = getComputedStyle(battleship);
+      const batWidth = batStyle.batWidth;
+      battleship.style.width = `${parseInt(batWidth)*4}px`;
+      battleship.style.height = `${batWidth}`;
     }
     if(cruiser) {
-      cruiser.style.width = `${parseInt(width)*3}px`;
-      cruiser.style.height = `${width}`;
+      const cruisStyle = getComputedStyle(cruiser);
+      const cruisWidth = cruisStyle.cruisWidth;
+      cruiser.style.width = `${parseInt(cruisWidth)*3}px`;
+      cruiser.style.height = `${cruisWidth}`;
     }
     if(submarine) {
-      submarine.style.width = `${parseInt(width)*3}px`;
-      submarine.style.height = `${width}`;
+      const subStyle = getComputedStyle(submarine);
+      const subWidth = subStyle.subWidth;
+      submarine.style.width = `${parseInt(subWidth)*3}px`;
+      submarine.style.height = `${subWidth}`;
     }
     if(destroyer) {
-      destroyer.style.width = `${parseInt(width)*2}px`;
-      destroyer.style.height = `${width}`;
+      const destStyle = getComputedStyle(destroyer);
+      const destWidth = destStyle.destWidth;
+      destroyer.style.width = `${parseInt(destWidth)*2}px`;
+      destroyer.style.height = `${destWidth}`;
     }
   }
 };
