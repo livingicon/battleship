@@ -1,0 +1,151 @@
+:root {
+  --hit-color: red;
+  --miss-color: aqua;
+  --ship-color: black;
+  --water-color: blue;
+  --primary-light: white;
+  --secondary-light: white;
+  --primary-dark: grey;
+  --secondary-dark: grey;
+  --cell-size: 25px;
+}
+
+html {
+  font-size: 1rem;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-image: url('./images/marco-krenn-R2TulcJaqSM-unsplash.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+#gameBoards {
+  display: flex;
+}
+
+#playerBattle,
+#computerArea {
+  display: none;
+}
+
+#fleet {
+  background-color: var(--secondary-dark);
+  max-height: calc(20px + (var(--cell-size)*10));
+  min-height: calc(20px + (var(--cell-size)*10));
+  max-width: calc(20px + (var(--cell-size)*10));
+  min-width: calc(20px + (var(--cell-size)*10));
+  border-radius: 10px;
+}
+
+#harbor {
+  position: relative;
+}
+
+#directionBtn {
+  height: 60px;
+  width: 80px;
+  position: absolute;
+  bottom: var(--cell-size);
+  right: var(--cell-size);
+}
+
+.dragShip {
+  display: flex;
+  padding: calc(var(--cell-size)/2);
+}
+
+#Carrier {
+  width: calc(10px + (var(--cell-size)*5));
+}
+
+#Battleship {
+  width: calc(10px + (var(--cell-size)*4));
+}
+
+#Cruiser,
+#Submarine {
+  width: calc(10px + (var(--cell-size)*3));
+}
+
+#Destroyer {
+  width: calc(10px + (var(--cell-size)*2));
+}
+
+.dragCell {
+  height: var(--cell-size);
+  width: var(--cell-size);
+  background-color: var(--ship-color);
+  border: solid 1px var(--primary-light);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: calc(20px + (var(--cell-size)*10));
+  min-width: calc(20px + (var(--cell-size)*10));
+  max-height: calc(20px + (var(--cell-size)*10));
+  min-height: calc(20px + (var(--cell-size)*10));
+}
+
+#key {
+  display: none;
+  background-color: var(--secondary-dark);
+  max-width: 100px;
+  min-width: 100px;
+  max-height: 100px;
+  min-height: 100px;
+}
+
+.colorKey {
+  display: flex;
+}
+
+#missColor {
+  background-color: var(--miss-color);
+  height: var(--cell-size);
+  width: var(--cell-size);
+  border: solid 1px var(--primary-light);
+}
+
+#hitColor {
+  background-color: var(--hit-color);
+  height: var(--cell-size);
+  width: var(--cell-size);
+  border: solid 1px var(--primary-light);
+}
+
+.playCell,
+.compCell {
+  display: flex;
+  background-color: var(--water-color);
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px  solid var(--primary-light);
+}
+
+.ship {
+  background-color: var(--ship-color);
+}
+
+.hit {
+  background-color: var(--hit-color);
+}
+
+.miss {
+  background-color: var(--miss-color);
+}
+
+.sunk {
+  color: var(--hit-color);
+  text-decoration: line-through;
+}
+
+#photoCredit { 
+  position: absolute;
+  bottom: 0px;
+  font-size: .7rem;
+  color: var(--primary-light);
+}
