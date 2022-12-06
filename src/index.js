@@ -1,126 +1,119 @@
-// SHIP FACTORY.js
-class Ship {
-  constructor(id, side, name, location, hits=0) {
-    this.id = id;
-    this.side = side;
-    this.name = name;
-    this.location = location;
-    this.length = location.length;
-    this.hits = hits; 
-  }
-  hit() {
-    this.hits++;
-  }
-  isSunk(grid) { 
-    if (this.length === this.hits) {
-        sunk(this.name, grid);
-    }
-  }
-};
+import Ship from "./ship.js";
+import Gameboard from "./gameboard.js";
+import Player from "./player.js";
 
+// // SHIP FACTORY.js
+// class Ship {
+//   constructor(id, side, name, location, hits=0) {
+//     this.id = id;
+//     this.side = side;
+//     this.name = name;
+//     this.location = location;
+//     this.length = location.length;
+//     this.hits = hits; 
+//   }
+//   hit() {
+//     this.hits++;
+//   }
+//   isSunk(grid) { 
+//     if (this.length === this.hits) {
+//         sunk(this.name, grid);
+//     }
+//   }
+// };
 
+// // GAMEBOARD FACTORY.js
+// class Gameboard {
+//   constructor() {
+//     this.totalHits = 0;
+//     this.waterGrid = [];
+//   }
+//   createGameboard() {
+//     for (let i = 1; i <= 100; i++) {
+//       this.waterGrid.push({cell: i, hit: 0, miss: 0})
+//     }
+//     return this.waterGrid;
+//   }
+//   placeShip(id, side, name, location, hits=0) {
+//     let newShip;
+//     side === 0 ? newShip = new Ship(id, 0, name, location, hits) : newShip = 
+//     new Ship(id, 1, name, location, hits);
+//     logFleet(side, newShip);
+//   }
+//   receiveAttack(num, grid) {
+//     let fleet;
+//     grid === playerGrid ? fleet = playerFleet : fleet = enemyFleet;
+//     for(let i=0; i<fleet.length; i++) {
+//       for(let j=0; j<fleet[i].location.length; j++) {
+//         if(num === fleet[i].location[j]) {
+//           grid.waterGrid[num-1].hit = 1;
+//           fleet[i].hit();
+//           fleet[i].isSunk(grid);
+//           grid.allSunk(grid);
+//           if (fleet === playerFleet) {
+//             loggedHitAI = []; // only clear if hit
+//             loggedHitAI.push(grid.waterGrid[num-1].cell);
+//           }
+//         }
+//       }
+//     }
+//     if (grid.waterGrid[num-1].hit === 0){
+//       grid.waterGrid[num-1].miss = 1; 
+//     }
+//     hitOrMiss(grid);
+//   }
+//   allSunk(grid) {
+//     for(let i=0; i<100; i++) { 
+//       if(grid.waterGrid[i].hit === 1) {
+//         grid.totalHits++;
+//       }
+//     }
+//     if(grid.totalHits === 17) {
+//       removeListeners();
+//       gameOver(grid);
+//     } else if (grid.totalHits !== 17) {
+//       grid.totalHits = 0;
+//     }
+//   }
+// };
 
-// GAMEBOARD FACTORY.js
-class Gameboard {
-  constructor() {
-    this.totalHits = 0;
-    this.waterGrid = [];
-  }
-  createGameboard() {
-    for (let i = 1; i <= 100; i++) {
-      this.waterGrid.push({cell: i, hit: 0, miss: 0})
-    }
-    return this.waterGrid;
-  }
-  placeShip(id, side, name, location, hits=0) {
-    let newShip;
-    side === 0 ? newShip = new Ship(id, 0, name, location, hits) : newShip = 
-    new Ship(id, 1, name, location, hits);
-    logFleet(side, newShip);
-  }
-
-  receiveAttack(num, grid) {
-    let fleet;
-    grid === playerGrid ? fleet = playerFleet : fleet = enemyFleet;
-    for(let i=0; i<fleet.length; i++) {
-      for(let j=0; j<fleet[i].location.length; j++) {
-        if(num === fleet[i].location[j]) {
-          grid.waterGrid[num-1].hit = 1;
-          fleet[i].hit();
-          fleet[i].isSunk(grid);
-          grid.allSunk(grid);
-          if (fleet === playerFleet) {
-            loggedHitAI = []; // only clear if hit
-            loggedHitAI.push(grid.waterGrid[num-1].cell);
-          }
-        }
-      }
-    }
-    if (grid.waterGrid[num-1].hit === 0){
-      grid.waterGrid[num-1].miss = 1; 
-
-    }
-    hitOrMiss(grid);
-  }
-
-  allSunk(grid) {
-    for(let i=0; i<100; i++) { 
-      if(grid.waterGrid[i].hit === 1) {
-        grid.totalHits++;
-      }
-    }
-    if(grid.totalHits === 17) {
-      removeListeners();
-      gameOver(grid);
-    } else if (grid.totalHits !== 17) {
-      grid.totalHits = 0;
-    }
-  }
-
-};
-
-// PLAYER FACTORY.js
-class Player {
-  constructor(name) {
-    this.player = name;
-  };
-
-  playerAttack(e) {
-    let num = Number(e.target.getAttribute('data-compcell'));
-    if(computerGrid.waterGrid[num-1].hit === 1 || computerGrid.waterGrid[num-1].miss 
-      === 1) { // already attacked
-    } else {
-      computerGrid.receiveAttack(num, computerGrid);
-      if (computerGrid.totalHits === 0) {
-        computer.computerAttack(playerGrid);
-      }
-    }
-  }
-
-  computerAttack(grid) {
-    const randomCell = Math.floor(Math.random() * 100) + 1; // 1-100 (auto fires)
-    if(loggedHitAI.length === 1) {
-      smartHits.push(loggedHitAI[0]-10, loggedHitAI[0]-1, loggedHitAI[0]+1, loggedHitAI[0]+10);
-      checkSmartHits(smartHits);
-      if (smartHits.length === 0) {
-        loggedHitAI = [];
-        computer.computerAttack(playerGrid); //
-      } else {
-        const randomSmartCell = smartHits[Math.floor(Math.random() * smartHits.length)];
-        smartHits = []; // clear smartHits
-        grid.receiveAttack(randomSmartCell, grid); // Here
-      }
-    } else if(grid.waterGrid[randomCell-1].hit === 1 || grid.waterGrid[randomCell-1].miss 
-        === 1) { // already attacked
-        computer.computerAttack(playerGrid);
-    } else {
-        grid.receiveAttack(randomCell, grid);
-    }
-  }
-
-};
-
-
+// // PLAYER FACTORY.js
+// class Player {
+//   constructor(name) {
+//     this.player = name;
+//   };
+//   playerAttack(e) {
+//     let num = Number(e.target.getAttribute('data-compcell'));
+//     if(computerGrid.waterGrid[num-1].hit === 1 || computerGrid.waterGrid[num-1].miss 
+//       === 1) { // already attacked
+//     } else {
+//       computerGrid.receiveAttack(num, computerGrid);
+//       if (computerGrid.totalHits === 0) {
+//         computer.computerAttack(playerGrid);
+//       }
+//     }
+//   }
+//   computerAttack(grid) {
+//     const randomCell = Math.floor(Math.random() * 100) + 1; // 1-100 (auto fires)
+//     if(loggedHitAI.length === 1) {
+//       smartHits.push(loggedHitAI[0]-10, loggedHitAI[0]-1, loggedHitAI[0]+1, loggedHitAI[0]+10);
+//       checkSmartHits(smartHits);
+//       if (smartHits.length === 0) {
+//         loggedHitAI = [];
+//         computer.computerAttack(playerGrid); //
+//       } else {
+//         const randomSmartCell = smartHits[Math.floor(Math.random() * smartHits.length)];
+//         smartHits = []; // clear smartHits
+//         grid.receiveAttack(randomSmartCell, grid); // Here
+//       }
+//     } else if(grid.waterGrid[randomCell-1].hit === 1 || grid.waterGrid[randomCell-1].miss 
+//         === 1) { // already attacked
+//         computer.computerAttack(playerGrid);
+//     } else {
+//         grid.receiveAttack(randomCell, grid);
+//     }
+//   }
+// };
 
 // DOM.js (UI)
 const gameBoards = document.getElementById('gameBoards');
