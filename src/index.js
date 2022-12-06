@@ -462,6 +462,9 @@ const checkOffBoard = (location, grid) => {
 function changeDirection() { // change to const later? In module?
   const dragShip = document.querySelectorAll('.dragShip');
   const carrier = document.getElementById('Carrier');
+  const carrierStyle = getComputedStyle(carrier);
+  const carrierHeight = carrierStyle.height;
+  const changeMeasure = carrierHeight;
   const battleship = document.getElementById('Battleship');
   const cruiser = document.getElementById('Cruiser');
   const submarine = document.getElementById('Submarine');
@@ -471,72 +474,64 @@ function changeDirection() { // change to const later? In module?
     fleet.style.display = 'flex';
     dragShip.forEach(ship => {
       ship.style.display = 'block';
+      ship.setAttribute('data-measure', changeMeasure);
     })
     if(carrier) {
-      const carStyle = getComputedStyle(carrier);
-      const carWidth = carStyle.carWidth;
-      carrier.style.width = `${carWidth}`;
-      carrier.style.height = `${parseInt(carWidth)*5}px`;
+      let measure = carrier.getAttribute('data-measure');
+      carrier.style.width = `${measure}`;
+      carrier.style.height = `${parseInt(measure)*5}px`;
     }
     if(battleship) {
-      const batStyle = getComputedStyle(battleship);
-      const batWidth = batStyle.batWidth;
-      battleship.style.width = `${batWidth}`;
-      battleship.style.height = `${parseInt(batWidth)*4}px`;
+      let measure = battleship.getAttribute('data-measure');
+      battleship.style.width = `${measure}`;
+      battleship.style.height = `${parseInt(measure)*4}px`;
     }
     if(cruiser) {
-      const cruisStyle = getComputedStyle(cruiser);
-      const cruisWidth = cruisStyle.cruisWidth;
-      cruiser.style.width = `${cruisWidth}`;
-      cruiser.style.height = `${parseInt(cruisWidth)*3}px`;
+      let measure = cruiser.getAttribute('data-measure');
+      cruiser.style.width = `${measure}`;
+      cruiser.style.height = `${parseInt(measure)*3}px`;
     }
     if(submarine) {
-      const subStyle = getComputedStyle(submarine);
-      const subWidth = subStyle.subWidth;
-      submarine.style.width = `${subWidth}`;
-      submarine.style.height = `${parseInt(subWidth)*3}px`;
+      let measure = submarine.getAttribute('data-measure');
+      submarine.style.width = `${measure}`;
+      submarine.style.height = `${parseInt(measure)*3}px`;
     }
     if(destroyer) {
-      const destStyle = getComputedStyle(destroyer);
-      const destWidth = destStyle.destWidth;
-      destroyer.style.width = `${destWidth}`;
-      destroyer.style.height = `${parseInt(destWidth)*2}px`;
+      let measure = destroyer.getAttribute('data-measure');
+      destroyer.style.width = `${measure}`;
+      destroyer.style.height = `${parseInt(measure)*2}px`;
     }
   } else if (fleet.style.display = 'block') {
     const fleet = document.getElementById('fleet');
     fleet.style.display = '';
     dragShip.forEach(ship => {
       ship.style.display = 'flex';
+      ship.setAttribute('data-measure', changeMeasure);
     })
     if(carrier) {
-      const carStyle = getComputedStyle(carrier);
-      const carWidth = carStyle.carWidth;
-      carrier.style.width = `${parseInt(carWidth)*5}px`;
-      carrier.style.height = `${carWidth}`;
+      let measure = carrier.getAttribute('data-measure');
+      carrier.style.width = `${measure}`;
+      carrier.style.height = `${parseInt(measure)/5}px`;
     }
     if(battleship) {
-      const batStyle = getComputedStyle(battleship);
-      const batWidth = batStyle.batWidth;
-      battleship.style.width = `${parseInt(batWidth)*4}px`;
-      battleship.style.height = `${batWidth}`;
+      let measure = battleship.getAttribute('data-measure');
+      battleship.style.width = `${parseInt(measure)/5*4}px`;
+      battleship.style.height = `${parseInt(measure)/5}px`;
     }
     if(cruiser) {
-      const cruisStyle = getComputedStyle(cruiser);
-      const cruisWidth = cruisStyle.cruisWidth;
-      cruiser.style.width = `${parseInt(cruisWidth)*3}px`;
-      cruiser.style.height = `${cruisWidth}`;
+      let measure = cruiser.getAttribute('data-measure');
+      cruiser.style.width = `${parseInt(measure)/5*3}px`
+      cruiser.style.height = `${parseInt(measure)/5}px`;
     }
     if(submarine) {
-      const subStyle = getComputedStyle(submarine);
-      const subWidth = subStyle.subWidth;
-      submarine.style.width = `${parseInt(subWidth)*3}px`;
-      submarine.style.height = `${subWidth}`;
+      let measure = submarine.getAttribute('data-measure');
+      submarine.style.width = `${parseInt(measure)/5*3}px`
+      submarine.style.height = `${parseInt(measure)/5}px`;
     }
     if(destroyer) {
-      const destStyle = getComputedStyle(destroyer);
-      const destWidth = destStyle.destWidth;
-      destroyer.style.width = `${parseInt(destWidth)*2}px`;
-      destroyer.style.height = `${destWidth}`;
+      let measure = destroyer.getAttribute('data-measure');
+      destroyer.style.width = `${parseInt(measure)/5*2}px`
+      destroyer.style.height = `${parseInt(measure)/5}px`;
     }
   }
 };
