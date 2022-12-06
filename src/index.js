@@ -303,6 +303,10 @@ const reset = () => location.reload();
 let shipInfo = [];
 const directionBtn = document.getElementById('directionBtn');
 directionBtn.addEventListener('click', changeDirection);
+const player = document.getElementById('player');
+player.addEventListener('dragover', onDragOver);
+player.addEventListener('dragenter', onDragEnter);
+player.addEventListener('drop', onDrop);
 
 const addDragListeners = () => {
   const dragCell = document.querySelectorAll('.dragCell');
@@ -318,10 +322,14 @@ const addDragListeners = () => {
 const onDragStart = (e) => {
   e.dataTransfer.setData('text/plain', e.target.id);
 };
-const onDragOver = (e) => e.preventDefault();
-const onDragEnter = (e) => e.preventDefault();
+function onDragOver(e) {
+  e.preventDefault();
+};
+function onDragEnter(e) {
+  e.preventDefault();
+};
 
-const onDrop = (e) => {
+function onDrop(e) {
   if(shipInfo.length > 1) {
     for(let i=shipInfo.length-2;i>=0;i--) {
       shipInfo.splice(shipInfo.indexOf(shipInfo[i]),1);
@@ -335,7 +343,6 @@ const onDrop = (e) => {
 };
 
 const logShipCell = (e) => {
-  console.log('log ship cell working');
   shipInfo.push(e.target.getAttribute('data-cell'));
 };
 
@@ -453,7 +460,6 @@ const checkOffBoard = (location, grid) => {
 };
 
 function changeDirection() { // change to const later? In module?
-  console.log('button working');
   const dragShip = document.querySelectorAll('.dragShip');
   const carrier = document.getElementById('Carrier');
   const battleship = document.getElementById('Battleship');
