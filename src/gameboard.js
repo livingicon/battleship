@@ -1,8 +1,6 @@
 import Ship from "./ship.js";
 import Player from "./player.js";
-import dragModule from "./dragUI.js";
 import gameModule from "./gameUI.js";
-
 // GAMEBOARD FACTORY.js
 class Gameboard {
   constructor() {
@@ -16,16 +14,17 @@ class Gameboard {
     }
     return this.waterGrid;
   }
+
   placeShip(id, side, name, location, hits=0) {
     let newShip;
     side === 0 ? newShip = new Ship(id, 0, name, location, hits) : newShip = 
     new Ship(id, 1, name, location, hits);
-    logFleet(side, newShip);
+    gameModule.logFleet(side, newShip);
   }
 
   receiveAttack(num, grid) {
     let fleet;
-    grid === playerGrid ? fleet = playerFleet : fleet = enemyFleet;
+    grid === playerGrid ? fleet = gameModule.playerFleet : fleet = gameModule.enemyFleet;
     for(let i=0; i<fleet.length; i++) {
       for(let j=0; j<fleet[i].location.length; j++) {
         if(num === fleet[i].location[j]) {
@@ -33,7 +32,7 @@ class Gameboard {
           fleet[i].hit();
           fleet[i].isSunk(grid);
           grid.allSunk(grid);
-          if (fleet === playerFleet) {
+          if (fleet === gameModule.playerFleet) {
             loggedHitAI = []; // only clear if hit
             loggedHitAI.push(grid.waterGrid[num-1].cell);
           }
@@ -44,7 +43,7 @@ class Gameboard {
       grid.waterGrid[num-1].miss = 1; 
 
     }
-    hitOrMiss(grid);
+    gameModule.hitOrMiss(grid);
   }
 
   allSunk(grid) {
@@ -54,8 +53,8 @@ class Gameboard {
       }
     }
     if(grid.totalHits === 17) {
-      removeListeners();
-      gameOver(grid);
+      gameModule.removeListeners(human);
+      gameModule.gameOver(grid);
     } else if (grid.totalHits !== 17) {
       grid.totalHits = 0;
     }
