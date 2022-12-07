@@ -418,7 +418,7 @@ const gameModule = (() => {
     resetBtn.addEventListener('click', reset);
     info.removeChild(instructions);
     info.appendChild(resetBtn);
-    if (grid === playerGrid) {
+    if (grid === GameLoop.playerGrid) {
       const enemyStatus = document.getElementById('enemyStatus');
       enemyStatus.innerHTML = "ENEMY STATUS: You are VICTORIOUS!";
       const playerStatus = document.getElementById('playerStatus');
@@ -433,7 +433,7 @@ const gameModule = (() => {
 
   const reset = () => location.reload();
 
-  return { renderGrids, sunk, checkSmartHits, placeComputerShip, addDragListeners, logFleet, addListeners, removeListeners, hitOrMiss, playerFleet, enemyFleet, loggedHitAI, smartHits };
+  return { renderGrids, gameOver, sunk, checkSmartHits, placeComputerShip, addDragListeners, logFleet, addListeners, removeListeners, hitOrMiss, playerFleet, enemyFleet, loggedHitAI, smartHits };
 })();
 
 export default gameModule;
