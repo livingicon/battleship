@@ -1,108 +1,114 @@
+/* GENERAL */
 :root {
-  --hit-color: red;
-  --miss-color: aqua;
-  --ship-color: black;
-  --water-color: blue;
-  --primary-light: white;
-  --secondary-light: white;
-  --primary-dark: grey;
-  --secondary-dark: grey;
+  --hit-color: #d31414;
+  --miss-color: #27a8a8;
+  --water-color: #2626a1;
+  --primary-light:  #cfd8d1;
+  --secondary-light: #82897f;
+  --primary-dark: #1e2d30;
+  --secondary-dark: #323c3d;
   --cell-size: 25px;
 }
 
 html {
   font-size: 1rem;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
 }
 
 body {
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   margin: 0;
   background-image: url('./images/marco-krenn-R2TulcJaqSM-unsplash.jpg');
   background-position: center;
   background-size: cover;
 }
 
-#gameBoards {
-  display: flex;
+/* HEADER */
+#header {
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
 }
 
-#playerBattle,
-#computerArea {
-  display: none;
+
+/* MAIN */
+#main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#instructions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  padding: 15px;
+  border: 2px solid var(--secondary-dark);
+  font-size: 1.5rem;
+  max-height: 200px;
+  min-height: 200px;
+  max-width: 585px;
+  min-width: 585px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+#gameBoards {
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary-dark);
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.gameBoardTitle {
+  color: var(--primary-light);
 }
 
 #fleet {
-  background-color: var(--secondary-dark);
-  max-height: calc(10px + (var(--cell-size)*10));
-  min-height: calc(10px + (var(--cell-size)*10));
+  background-color: var(--secondary-light);
+  padding-top: .1px;
+  max-height: calc(20px + (var(--cell-size)*10));
+  min-height: calc(20px + (var(--cell-size)*10));
   max-width: calc(20px + (var(--cell-size)*10));
   min-width: calc(20px + (var(--cell-size)*10));
-  padding-top: 10px;
   border-radius: 10px;
-}
-
-#harbor {
-  position: relative;
-}
-
-#directionBtn {
-  height: 60px;
-  width: 80px;
-  position: absolute;
-  bottom: var(--cell-size);
-  right: var(--cell-size);
-}
-
-.dragShip {
-  display: flex;
-  margin: calc(var(--cell-size)/2);
-  height: calc(var(--cell-size)+2);
-}
-
-#Carrier {
-  width: calc(10px + (var(--cell-size)*5));
-}
-
-#Battleship {
-  width: calc(8px + (var(--cell-size)*4));
-}
-
-#Cruiser,
-#Submarine {
-  width: calc(6px + (var(--cell-size)*3));
-}
-
-#Destroyer {
-  width: calc(4px + (var(--cell-size)*2));
-}
-
-.dragCell {
-  height: var(--cell-size);
-  width: var(--cell-size);
-  background-color: var(--ship-color);
-  border: solid 1px var(--primary-light);
+  margin: 20px;
 }
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
   max-width: calc(20px + (var(--cell-size)*10));
   min-width: calc(20px + (var(--cell-size)*10));
   max-height: calc(20px + (var(--cell-size)*10));
   min-height: calc(20px + (var(--cell-size)*10));
+  margin: 20px;
 }
 
 #key {
   display: none;
-  background-color: var(--secondary-dark);
-  max-width: 100px;
-  min-width: 100px;
+  background-color: var(--secondary-light);
+  max-width: 80px;
+  min-width: 80px;
   max-height: 100px;
   min-height: 100px;
+  padding: 0px 10px;
+  border-radius: 10px;
 }
 
 .colorKey {
   display: flex;
+  align-items: center;
+}
+
+.colorKey p {
+  margin-left: 10px;
 }
 
 #missColor {
@@ -119,17 +125,100 @@ body {
   border: solid 1px var(--primary-light);
 }
 
+.battle {
+  max-width: calc(var(--cell-size)*10);
+  min-width: calc(var(--cell-size)*10);
+  max-height: calc(var(--cell-size)*10);
+  min-height: calc(var(--cell-size)*10);
+  background-color: var(--primary-light);
+  color: var(--secondary-dark);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+}
+
+
+/* FOOTER */
+#footer {
+  background-color: var(--primary-dark);
+  color: var(--secondary-light);
+}
+
+#footerText {
+  font-size: 1rem;
+  font-weight: lighter;
+}
+
+#gameBoards {
+  display: flex;
+}
+
+#playerBattle,
+#computerArea {
+  display: none;
+}
+
+#harbor {
+  position: relative;
+}
+
+#directionBtn {
+  background-color: var(--primary-light);
+  height: 60px;
+  font-weight: bold;
+  width: 80px;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  border: 2px solid var(--secondary-dark);
+  border-radius: 10px;
+}
+
+.dragShip {
+  display: flex;
+  margin: 20px;
+  /* padding: calc(var(--cell-size)/2); */
+}
+
+#Carrier {
+  width: calc(10px + (var(--cell-size)*5));
+}
+
+#Battleship {
+  width: calc(10px + (var(--cell-size)*4));
+}
+
+#Cruiser,
+#Submarine {
+  width: calc(10px + (var(--cell-size)*3));
+}
+
+#Destroyer {
+  width: calc(10px + (var(--cell-size)*2));
+}
+
+.dragCell {
+  min-height: var(--cell-size);
+  max-height: var(--cell-size);
+  min-width: var(--cell-size);
+  max-width: var(--cell-size);
+  background-color: var(--primary-dark);
+  border: solid 1px var(--primary-light);
+}
+
 .playCell,
 .compCell {
   display: flex;
   background-color: var(--water-color);
-  width: var(--cell-size);
-  height: var(--cell-size);
+  min-height: var(--cell-size);
+  max-height: var(--cell-size);
+  min-width: var(--cell-size);
+  max-width: var(--cell-size);
   border: 1px  solid var(--primary-light);
 }
 
 .ship {
-  background-color: var(--ship-color);
+  background-color: var(--primary-dark);
 }
 
 .hit {
@@ -145,9 +234,27 @@ body {
   text-decoration: line-through;
 }
 
+#resetBtn {
+  background-color: var(--water-color);
+  font-weight: bold;
+  font-size: 3rem;
+  color: var(--primary-light);
+  height: 130px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  margin: 20px;
+}
+
 #photoCredit { 
   position: absolute;
-  bottom: 0px;
+  bottom: 5px;
+  right: 20px;
   font-size: .7rem;
+  color: var(--primary-light);
+}
+
+#photoCredit a {
+  text-decoration: none;
   color: var(--primary-light);
 }

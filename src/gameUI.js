@@ -26,43 +26,42 @@ const gameModule = (() => {
       fleet.style.display = 'flex';
       dragShip.forEach(ship => {
         ship.style.display = 'block';
-        const shipStyle = getComputedStyle(ship);
-        const shipWidth = shipStyle.width;
-        ship.setAttribute('data-measure', shipWidth);
       })
       if(carrier) {
         let measure = carrier.getAttribute('data-measure');
         carrier.style.width = `${measure}`;
         carrier.style.height = `${parseInt(measure)*5}px`;
+        carrier.style.marginRight = "0px";
       }
       if(battleship) {
         let measure = battleship.getAttribute('data-measure');
         battleship.style.width = `${measure}`;
         battleship.style.height = `${parseInt(measure)*4}px`;
+        battleship.style.marginRight = "0px";
       }
       if(cruiser) {
         let measure = cruiser.getAttribute('data-measure');
         cruiser.style.width = `${measure}`;
         cruiser.style.height = `${parseInt(measure)*3}px`;
+        cruiser.style.marginRight = "0px";
       }
       if(submarine) {
         let measure = submarine.getAttribute('data-measure');
         submarine.style.width = `${measure}`;
         submarine.style.height = `${parseInt(measure)*3}px`;
+        submarine.style.marginRight = "0px";
       }
       if(destroyer) {
         let measure = destroyer.getAttribute('data-measure');
         destroyer.style.width = `${measure}`;
         destroyer.style.height = `${parseInt(measure)*2}px`;
+        destroyer.style.marginRight = "0px";
       }
     } else if (fleet.style.display = 'block') {
       const fleet = document.getElementById('fleet');
       fleet.style.display = '';
       dragShip.forEach(ship => {
         ship.style.display = 'flex';
-        const shipStyle = getComputedStyle(ship);
-        const shipWidth = shipStyle.width;
-        ship.setAttribute('data-measure', shipWidth);
       })
       if(carrier) {
         let measure = carrier.getAttribute('data-measure');
@@ -105,6 +104,9 @@ const gameModule = (() => {
     const dragShip = document.querySelectorAll('.dragShip');
     dragShip.forEach(ship => {
       ship.addEventListener('dragstart', onDragStart)
+      const shipStyle = getComputedStyle(ship);
+      const shipHeight = shipStyle.height;
+      ship.setAttribute('data-measure', shipHeight);
     })
   };
 
@@ -414,20 +416,25 @@ const gameModule = (() => {
     const info = document.getElementById('info');
     const instructions = document.getElementById('instructions');
     const resetBtn = document.createElement('button');
-    resetBtn.innerHTML = "RESET";
+    resetBtn.innerHTML = "PLAY AGAIN";
+    resetBtn.setAttribute('id', 'resetBtn');
     resetBtn.addEventListener('click', reset);
     info.removeChild(instructions);
     info.appendChild(resetBtn);
     if (grid === GameLoop.playerGrid) {
       const enemyStatus = document.getElementById('enemyStatus');
-      enemyStatus.innerHTML = "ENEMY STATUS: You are VICTORIOUS!";
+      enemyStatus.innerHTML = "VICTORY";
+      enemyStatus.style.color = "#d31414";
       const playerStatus = document.getElementById('playerStatus');
-      playerStatus.innerHTML = "PLAYER STATUS: Your Fleet Lies in RUIN!";
+      playerStatus.innerHTML = "DEFEAT";
+      playerStatus.style.color = "#d31414";
     } else {
       const playerStatus = document.getElementById('playerStatus');
-      playerStatus.innerHTML = "PLAYER STATUS: You are VICTORIOUS!";
+      playerStatus.innerHTML = "VICTORY";
+      playerStatus.style.color = "#d31414";
       const enemyStatus = document.getElementById('enemyStatus');
-      enemyStatus.innerHTML = "ENEMY STATUS: Your Fleet Lies in RUIN!";
+      enemyStatus.innerHTML = "DEFEAT";
+      enemyStatus.style.color = "#d31414";
     }
   };
 
