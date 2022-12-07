@@ -10,20 +10,20 @@
 </head>
 <body>
 
-  <header class="header">
-    <h1 class="header">Battleship</h1>
+  <header id="header">
+    <h1 id="headerTitle">BATTLESHIP</h1>
   </header>
 
-  <main class="main">
+  <main id="main">
     <div id="info">
       <p id="instructions">Launch ships from your harbor by dragging and dropping them 
         into friendly waters. To switch launch direction from horizontal to vertical
-        click the "change ship direction" button before clicking on the ship.</p>
+        click the "Change Ship Direction" button before clicking on the ship.</p>
     </div>
 
     <div id="gameBoards">
       <div id="harbor">
-        <h2>Harbor</h2>
+        <h2 class=gameBoardTitle>Harbor</h2>
         <div id="fleet">
           <div class="dragShip" draggable="true" id="Carrier">
             <div class="dragCell" data-cell="1"></div>
@@ -57,10 +57,10 @@
       </div>
 
       <div id="playerArea">
-        <h2>Friendly Waters</h2>
-        <div class='grid' id="player"></div>
+        <h2 class=gameBoardTitle>Friendly Waters</h2>
+        <div class='grid' id="player" ondragover="onDragOver(event);" ondragenter="onDragEnter(event);" ondrop="onDrop(event);"></div>
         <div class="battle" id="playerBattle">
-          <h2 class="status" id="playerStatus">PLAYER STATUS:</h2>
+          <h2 class="status" id="playerStatus">PLAYER STATUS</h2>
           <p id="playCarrier">Carrier</p>
           <p id="playBattleship">Battleship</p>
           <p id="playCruiser">Cruiser</p>
@@ -68,6 +68,7 @@
           <p id="playDestroyer">Destroyer</p>
         </div>
       </div>
+
       <div id="key">
         <div class="colorKey" id="missKey">
           <div id='missColor'></div>
@@ -78,11 +79,12 @@
           <p>HIT</p>
         </div>
       </div>
+
       <div id="computerArea">
-        <h2>Enemy Waters</h2>
+        <h2 class=gameBoardTitle>Enemy Waters</h2>
         <div class='grid' id="computer"></div>
         <div class="battle" id="computerBattle">
-          <h2 class="status" id="enemyStatus">ENEMY STATUS:</h2>
+          <h2 class="status" id="enemyStatus">ENEMY STATUS</h2>
           <p id="compCarrier">Carrier</p>
           <p id="compBattleship">Battleship</p>
           <p id="compCruiser">Cruiser</p>
@@ -94,6 +96,9 @@
     <p id="photoCredit">Photo by <a href="https://unsplash.com/@mck?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marco Krenn</a> 
       on <a href="https://unsplash.com/s/photos/battleship?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
   </main>
-  
+
+  <footer id="header">
+    <h1 id="footerText">Created by Josh Hancock for The Odin Project</h1>
+  </footer>
 </body>
 </html>
