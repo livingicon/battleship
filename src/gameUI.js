@@ -1,6 +1,7 @@
 import Gameboard from "./gameboard.js";
 import Ship from "./ship.js";
 import Player from "./player.js";
+import GameLoop from "./index.js";
 
 const gameModule = (() => {
 
@@ -13,12 +14,9 @@ const gameModule = (() => {
   const player = document.getElementById('player');
   let shipInfo = [];
 
-  const changeDirection = () => { // change to const later? In module?
+  const changeDirection = () => {
     const dragShip = document.querySelectorAll('.dragShip');
     const carrier = document.getElementById('Carrier');
-    const carrierStyle = getComputedStyle(carrier);
-    const carrierHeight = carrierStyle.height;
-    const changeMeasure = carrierHeight;
     const battleship = document.getElementById('Battleship');
     const cruiser = document.getElementById('Cruiser');
     const submarine = document.getElementById('Submarine');
@@ -28,7 +26,9 @@ const gameModule = (() => {
       fleet.style.display = 'flex';
       dragShip.forEach(ship => {
         ship.style.display = 'block';
-        ship.setAttribute('data-measure', changeMeasure);
+        const shipStyle = getComputedStyle(ship);
+        const shipWidth = shipStyle.width;
+        ship.setAttribute('data-measure', shipWidth);
       })
       if(carrier) {
         let measure = carrier.getAttribute('data-measure');
@@ -60,32 +60,34 @@ const gameModule = (() => {
       fleet.style.display = '';
       dragShip.forEach(ship => {
         ship.style.display = 'flex';
-        ship.setAttribute('data-measure', changeMeasure);
+        const shipStyle = getComputedStyle(ship);
+        const shipWidth = shipStyle.width;
+        ship.setAttribute('data-measure', shipWidth);
       })
       if(carrier) {
         let measure = carrier.getAttribute('data-measure');
-        carrier.style.width = `${measure}`;
-        carrier.style.height = `${parseInt(measure)/5}px`;
+        carrier.style.width = `${parseInt(measure)*5}px`;
+        carrier.style.height = `${measure}`;
       }
       if(battleship) {
         let measure = battleship.getAttribute('data-measure');
-        battleship.style.width = `${parseInt(measure)/5*4}px`;
-        battleship.style.height = `${parseInt(measure)/5}px`;
+        battleship.style.width = `${parseInt(measure)*4}px`;
+        battleship.style.height = `${measure}`;
       }
       if(cruiser) {
         let measure = cruiser.getAttribute('data-measure');
-        cruiser.style.width = `${parseInt(measure)/5*3}px`
-        cruiser.style.height = `${parseInt(measure)/5}px`;
+        cruiser.style.width = `${parseInt(measure)*3}px`
+        cruiser.style.height = `${measure}`;
       }
       if(submarine) {
         let measure = submarine.getAttribute('data-measure');
-        submarine.style.width = `${parseInt(measure)/5*3}px`
-        submarine.style.height = `${parseInt(measure)/5}px`;
+        submarine.style.width = `${parseInt(measure)*3}px`
+        submarine.style.height = `${measure}`;
       }
       if(destroyer) {
         let measure = destroyer.getAttribute('data-measure');
-        destroyer.style.width = `${parseInt(measure)/5*2}px`
-        destroyer.style.height = `${parseInt(measure)/5}px`;
+        destroyer.style.width = `${parseInt(measure)*2}px`
+        destroyer.style.height = `${measure}`;
       }
     }
   };
@@ -199,7 +201,7 @@ const gameModule = (() => {
     if(checkOffBoard(location) && checkOverlap(location, side) !== true) {
       const draggedShip = document.getElementById(shipName);
       draggedShip.remove();
-      playerGrid.placeShip(id, side, name, location); // this is not working (move this elsewhere?)
+      GameLoop.playerGrid.placeShip(id, side, name, location);
       shipInfo = [];
       shipColor();
       beginGame();
@@ -220,7 +222,7 @@ const gameModule = (() => {
     }
   }
 
-  const checkOverlap = (location, side) => { // stuck setting up computer board
+  const checkOverlap = (location, side) => {
     let fleet;
     side === 0 ? fleet = playerFleet : fleet = enemyFleet;
     for(let i=0; i<fleet.length; i++) {
@@ -265,11 +267,18 @@ const gameModule = (() => {
       smartHits.splice(1, 1);
     }
     for(let i = smartHits.length - 1; i >= 0; i--) { // reverse order for loop (for splice)
-      if(smartHits[i]<=0 || smartHits[i]>100 || playerGrid.waterGrid[smartHits[i]-1].hit 
-        === 1 || playerGrid.waterGrid[smartHits[i]-1].miss === 1) {
+      if(smartHits[i]<=0 || smartHits[i]>100 || GameLoop.playerGrid.waterGrid[smartHits[i]-1].hit 
+        === 1 || GameLoop.playerGrid.waterGrid[smartHits[i]-1].miss === 1) {
         smartHits.splice(smartHits.indexOf(smartHits[i]), 1);
       }
     }
+  };
+
+  const addListeners = (human) => {
+    const listeners = document.querySelectorAll('.compCell');
+    listeners.forEach(cell => {
+      cell.addEventListener('click', human.playerAttack)
+    })
   };
   
   const renderGrids = () => { 
@@ -288,17 +297,10 @@ const gameModule = (() => {
     }
   };
   
-  const addListeners = () => {
-    const listeners = document.querySelectorAll('.compCell');
-    listeners.forEach(cell => {
-      cell.addEventListener('click', human.playerAttack) // human is not defined
-    })
-  };
-  
   const removeListeners = () => {
     const listeners = document.querySelectorAll('.compCell');
     listeners.forEach(cell => {
-      cell.removeEventListener('click', human.playerAttack)
+      cell.removeEventListener('click', GameLoop.human.playerAttack)
     })
   };
   
@@ -332,6 +334,7 @@ const gameModule = (() => {
   const recurse = (randomAxis, id, name, location, grid) => {
     if(checkCompOffBoard(randomAxis, location) !== true && 
     checkOverlap(location, 1) !== true) {
+      // cannot use GameLoop here (before initialization);
       grid.placeShip(id, 1, name, location);
     } else {
       if(randomAxis === 1) {
@@ -378,7 +381,7 @@ const gameModule = (() => {
   
   const hitOrMiss = (grid) => {
     let gridData;
-    grid === playerGrid ? gridData = "playcell" : gridData = "compcell";
+    grid === GameLoop.playerGrid ? gridData = "playcell" : gridData = "compcell";
     for(let i=0; i<100; i++) {
       if(grid.waterGrid[i].hit === 1) {
         let cell = document.querySelector(`[data-${gridData}='${i+1}']`);
@@ -402,7 +405,7 @@ const gameModule = (() => {
   
   const sunk = (name, grid) => {
     let id;
-    grid === computerGrid ? id = "comp" : id = "play";
+    grid === GameLoop.computerGrid ? id = "comp" : id = "play";
     const sunkShip = document.getElementById(`${id}${name}`);
     sunkShip.classList.add('sunk');
   }
@@ -430,7 +433,7 @@ const gameModule = (() => {
 
   const reset = () => location.reload();
 
-  return { renderGrids, placeComputerShip, addDragListeners, logFleet, addListeners, removeListeners };
+  return { renderGrids, sunk, checkSmartHits, placeComputerShip, addDragListeners, logFleet, addListeners, removeListeners, hitOrMiss, playerFleet, enemyFleet, loggedHitAI, smartHits };
 })();
 
 export default gameModule;

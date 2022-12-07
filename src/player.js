@@ -1,6 +1,7 @@
 import Gameboard from "./gameboard.js";
 import Ship from "./ship.js";
 import gameModule from "./gameUI.js";
+import GameLoop from "./index.js";
 
 // PLAYER FACTORY.js
 class Player {
@@ -10,32 +11,32 @@ class Player {
 
   playerAttack(e) {
     let num = Number(e.target.getAttribute('data-compcell'));
-    if(computerGrid.waterGrid[num-1].hit === 1 || computerGrid.waterGrid[num-1].miss 
+    if(GameLoop.computerGrid.waterGrid[num-1].hit === 1 || GameLoop.computerGrid.waterGrid[num-1].miss 
       === 1) { // already attacked
     } else {
-      computerGrid.receiveAttack(num, computerGrid);
-      if (computerGrid.totalHits === 0) {
-        computer.computerAttack(playerGrid);
+      GameLoop.computerGrid.receiveAttack(num, GameLoop.computerGrid);
+      if (GameLoop.computerGrid.totalHits === 0) {
+        GameLoop.computer.computerAttack(GameLoop.playerGrid);
       }
     }
   }
 
   computerAttack(grid) {
     const randomCell = Math.floor(Math.random() * 100) + 1; // 1-100 (auto fires)
-    if(loggedHitAI.length === 1) {
-      smartHits.push(loggedHitAI[0]-10, loggedHitAI[0]-1, loggedHitAI[0]+1, loggedHitAI[0]+10);
-      checkSmartHits(smartHits);
-      if (smartHits.length === 0) {
-        loggedHitAI = [];
-        computer.computerAttack(playerGrid); //
+    if(gameModule.loggedHitAI.length === 1) {
+      gameModule.smartHits.push(gameModule.loggedHitAI[0]-10, gameModule.loggedHitAI[0]-1, gameModule.loggedHitAI[0]+1, gameModule.loggedHitAI[0]+10);
+      gameModule.checkSmartHits(gameModule.smartHits);
+      if (gameModule.smartHits.length === 0) {
+        gameModule.loggedHitAI = [];
+        GameLoop.computer.computerAttack(GameLoop.playerGrid); //
       } else {
-        const randomSmartCell = smartHits[Math.floor(Math.random() * smartHits.length)];
-        smartHits = []; // clear smartHits
+        const randomSmartCell = gameModule.smartHits[Math.floor(Math.random() * gameModule.smartHits.length)];
+        gameModule.smartHits = []; // clear smartHits
         grid.receiveAttack(randomSmartCell, grid); // Here
       }
     } else if(grid.waterGrid[randomCell-1].hit === 1 || grid.waterGrid[randomCell-1].miss 
         === 1) { // already attacked
-        computer.computerAttack(playerGrid);
+        GameLoop.computer.computerAttack(GameLoop.playerGrid);
     } else {
         grid.receiveAttack(randomCell, grid);
     }
