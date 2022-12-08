@@ -1,5 +1,3 @@
-import Ship from "./ship.js";
-import Player from "./player.js";
 import gameModule from "./gameUI.js";
 import GameLoop from "./index.js";
 

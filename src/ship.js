@@ -1,7 +1,5 @@
-import Gameboard from "./gameboard.js";
-import Player from "./player.js";
 import gameModule from "./gameUI.js";
-import GameLoop from "./index.js";
+
 
 // SHIP FACTORY.js
 class Ship {

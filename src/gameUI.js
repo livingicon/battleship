@@ -1,6 +1,3 @@
-import Gameboard from "./gameboard.js";
-import Ship from "./ship.js";
-import Player from "./player.js";
 import GameLoop from "./index.js";
 
 const gameModule = (() => {

@@ -1,5 +1,3 @@
-import Gameboard from "./gameboard.js";
-import Ship from "./ship.js";
 import gameModule from "./gameUI.js";
 import GameLoop from "./index.js";
 

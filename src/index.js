@@ -11,12 +11,10 @@ const GameLoop = (() => {
   const computerGrid = new Gameboard();
   playerGrid.createGameboard();
   computerGrid.createGameboard();
-  // gameModule.addListeners(); // not adding the listeners
-
   gameModule.placeComputerShip(computerGrid);
   gameModule.addDragListeners();
   gameModule.renderGrids();
-  gameModule.addListeners(human); // not adding the listeners
+  gameModule.addListeners(human);
 
   return { human, computer, playerGrid, computerGrid };
 })();
