@@ -13,7 +13,6 @@
 html {
   font-size: 1rem;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  text-align: center;
 }
 
 body {
@@ -24,6 +23,8 @@ body {
   background-image: url('./images/marco-krenn-R2TulcJaqSM-unsplash.jpg');
   background-position: center;
   background-size: cover;
+  cursor: crosshair;
+  text-align: center;
 }
 
 /* HEADER */
@@ -177,7 +178,6 @@ body {
 .dragShip {
   display: flex;
   margin: 20px;
-  /* padding: calc(var(--cell-size)/2); */
 }
 
 #Carrier {
