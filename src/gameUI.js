@@ -148,7 +148,7 @@ const gameModule = (() => {
       playerBattle.style.display = 'block';
       computerArea.style.display = 'block';
       key.style.display = 'block';
-      instructions.innerHTML = "Attack the enemy fleet by clicking on their waters.";
+      instructions.innerHTML = "Attack the enemy fleet by clicking on their waters. You can see the status of both fleets under their waters.";
       harbor.style.display = 'none';
       directionBtn.style.display = 'none';
     }
