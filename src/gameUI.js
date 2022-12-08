@@ -210,7 +210,7 @@ const gameModule = (() => {
     }
   };
 
-  const logFleet = (side, newShip) => { // move elsewhere?
+  const logFleet = (side, newShip) => {
     let fleet;
     side === 0 ? fleet = playerFleet : fleet = enemyFleet;
     if(fleet.length === 0) {
@@ -333,7 +333,6 @@ const gameModule = (() => {
   const recurse = (randomAxis, id, name, location, grid) => {
     if(checkCompOffBoard(randomAxis, location) !== true && 
     checkOverlap(location, 1) !== true) {
-      // cannot use GameLoop here (before initialization);
       grid.placeShip(id, 1, name, location);
     } else {
       if(randomAxis === 1) {
@@ -363,7 +362,7 @@ const gameModule = (() => {
         return true; // off board
       }
     }
-    if(randomAxis === 1) { // could do this with % 10 and 11 === 0
+    if(randomAxis === 1) {
       if(location.includes(10) && location.includes(11) ||
       location.includes(20) && location.includes(21) ||
       location.includes(30) && location.includes(31) ||

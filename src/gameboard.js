@@ -1,3 +1,4 @@
+import Ship from "./ship.js";
 import gameModule from "./gameUI.js";
 import GameLoop from "./index.js";
 
@@ -25,7 +26,6 @@ class Gameboard {
   receiveAttack(num, grid) {
     let fleet;
     grid === GameLoop.playerGrid ? fleet = gameModule.playerFleet : fleet = gameModule.enemyFleet;
-    // both fleets are undefined
     for(let i=0; i<fleet.length; i++) {
       for(let j=0; j<fleet[i].location.length; j++) {
         if(num === fleet[i].location[j]) {
@@ -44,7 +44,7 @@ class Gameboard {
       grid.waterGrid[num-1].miss = 1; 
 
     }
-    gameModule.hitOrMiss(grid); // cannot use function here
+    gameModule.hitOrMiss(grid);
   }
 
   allSunk(grid) {
