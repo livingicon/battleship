@@ -4,3 +4,9 @@
 
 <a href="https://livingicon.github.io/battleship/" rel="nofollow">Live Demo</a>
 <img class="emoji" alt="point_left" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f448.png">
+
+<h2>Getting Started</h2>
+
+<code>
+  "git clone https://github.com/livingicon/battleship.git cd battleship npm install npm start "
+</code>
