@@ -18,8 +18,6 @@
 <h2>Built With</h2>
 
 <ul dir="auto">
-<li><a href="https://www.typescriptlang.org/" rel="nofollow">TypeScript</a></li>
-<li><a href="https://reactjs.org/" rel="nofollow">React</a></li>
-<li><a href="https://styled-components.com/" rel="nofollow">styled-components</a></li>
-<li><a href="https://jestjs.io/" rel="nofollow">jest</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" rel="nofollow">JavaScript</a></li>
+  <li><a href="https://jestjs.io/" rel="nofollow">jest</a></li>
 </ul>
