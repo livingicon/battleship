@@ -7,6 +7,8 @@
 
 <h2>Getting Started</h2>
 
-<code>
-  "git clone https://github.com/livingicon/battleship.git cd battleship npm install npm start "
-</code>
+<pre class="notranslate"><code>git clone https://github.com/livingicon/battleship.git
+cd battleship
+npm install
+npm start
+</code></pre>
