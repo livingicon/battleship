@@ -7,8 +7,19 @@
 
 <h2>Getting Started</h2>
 
-<pre class="notranslate"><code>git clone https://github.com/livingicon/battleship.git
-cd battleship
-npm install
-npm start
-</code></pre>
+<pre class="notranslate">
+  <code>git clone https://github.com/livingicon/battleship.git
+  cd battleship
+  npm install
+  npm start
+  </code>
+</pre>
+
+<h2>Built With</h2>
+
+<ul dir="auto">
+<li><a href="https://www.typescriptlang.org/" rel="nofollow">TypeScript</a></li>
+<li><a href="https://reactjs.org/" rel="nofollow">React</a></li>
+<li><a href="https://styled-components.com/" rel="nofollow">styled-components</a></li>
+<li><a href="https://jestjs.io/" rel="nofollow">jest</a></li>
+</ul>
