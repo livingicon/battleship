@@ -22,5 +22,4 @@
 
 <ul dir="auto">
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" rel="nofollow">JavaScript</a></li>
-  <li><a href="https://jestjs.io/" rel="nofollow">Jest</a></li>
 </ul>
